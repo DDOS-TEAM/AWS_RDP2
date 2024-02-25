@@ -17,7 +17,7 @@ ICACLS C:\Windows\installer /grant administrator:F >nul
 echo Success!
 echo IP:
 ping -n 1 localhost >nul
-where /r "%SystemRoot%" ngrok.exe > nul && (
+tasklist | find /i "ngrok.exe" >Nul && (
     curl -s -u %NGROK_AUTHTOKEN%:localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || (
         echo Failed to retrieve NGROK authtoken - check your authtoken again
     )

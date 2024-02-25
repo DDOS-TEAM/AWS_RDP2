@@ -14,7 +14,13 @@ ICACLS C:\Windows\Temp /grant administrator:F >nul
 ICACLS C:\Windows\installer /grant administrator:F >nul
 echo Success!
 echo IP:
-tasklist | find /i "ngrok.exe" >Nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retreive NGROK authtoken - check again your authtoken"
+tasklist /fi "imagename eq ngrok.exe" 2>NUL | find /I /N "ngrok.exe">NUL
+if "%ERRORLEVEL%"=="0" (
+    curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retrieve NGROK authtoken - check your authtoken again"
+) else (
+    echo "NGROK process not found."
+)
+
 echo Username: administrator
 echo Password: 9cl?AYNF0aEjR
 echo You can login now.

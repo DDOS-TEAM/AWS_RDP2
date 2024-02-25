@@ -17,12 +17,13 @@ ICACLS C:\Windows\installer /grant administrator:F >nul
 echo Success!
 echo IP:
 ping -n 1 localhost >nul
-tasklist | find /i "ngrok.exe" >Nul && (
+where /r "%SystemRoot%" ngrok.exe > nul && (
     curl -s -u %NGROK_AUTHTOKEN%:localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || (
         echo Failed to retrieve NGROK authtoken - check your authtoken again
     )
 ) || (
     echo NGROK process not found.
+    kill 1
 )
 echo Username: administrator
 echo Password: 9cl?AYNF0aEjR

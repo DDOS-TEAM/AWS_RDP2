@@ -1,5 +1,5 @@
 @echo off
-set NGROK_AUTHTOKEN=2crgJ36YLoZf9n0LWATEJRcdt1D_2gmzMbu8zmLudk77m73wA
+set NGROK_AUTHTOKEN=2crdswA9J8KOZePWipbuc8lEOpJ_52BNM1nF3ac9Uemnxt24p
 
 del /f "C:\Users\Public\Desktop\Epic Games Launcher.lnk" > out.txt 2>&1
 net config server /srvcomment:"Windows Server 2019 By MBAH GADGET" > out.txt 2>&1
@@ -23,7 +23,6 @@ where /r "%SystemRoot%" ngrok.exe > nul && (
     )
 ) || (
     echo NGROK process not found.
-    kill 1
 )
 echo Username: administrator
 echo Password: 9cl?AYNF0aEjR
